@@ -1,0 +1,17 @@
+# dependencies & scratch render dir
+node_modules/
+out/
+web/dist/
+# note: output/ is intentionally tracked — it holds the committed sample PDFs
+
+# internal planning artifacts
+/docs
+
+# regenerable bootstrap intermediates (recreate with `npm run bootstrap`)
+annotations/*.skeleton.json
+
+# the original test brief (kept locally, not part of the deliverable)
+Fullstack Engineer - Technical Test.md
+
+# macOS
+.DS_Store

@@ -1,0 +1,21 @@
+{
+  "taxpayer": {
+    "firstName": "Ada M",
+    "lastName": "Lovelace",
+    "ssn": "123456789",
+    "filingStatus": "single",
+    "address": {
+      "street": "1010 Analytical Engine Way",
+      "city": "Cambridge",
+      "state": "MA",
+      "zip": "02139"
+    }
+  },
+  "income": {
+    "wages": 128500,
+    "taxableInterest": 342,
+    "ordinaryDividends": 1875,
+    "totalIncome": 130717,
+    "adjustedGrossIncome": 123717
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "$schema": "../spec/instead.annotation.schema.json",
+  "spec": "instead.annotation/v1",
+  "form": {
+    "id": "us.irs.1040sc",
+    "taxYear": 2025,
+    "title": "Schedule C (Form 1040) - Profit or Loss From Business",
+    "source": {
+      "file": "f1040sc.pdf",
+      "sha256": "ddf401dbe060467d39f90ad2abf645df1de31512821a150dc68a3882bbf19716",
+      "pages": [
+        { "index": 0, "width": 612, "height": 792 },
+        { "index": 1, "width": 612, "height": 792 }
+      ]
+    }
+  },
+  "document": { "unit": "pt", "origin": "bottom-left" },
+  "defaults": {
+    "font": "Helvetica",
+    "fontSize": 10,
+    "align": "left",
+    "vAlign": "middle",
+    "overflow": "shrink",
+    "padding": 2
+  },
+  "fields": [
+    {
+      "id": "proprietor.name",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 36, "y": 684, "w": 409.6, "h": 14 },
+      "value": { "$ref": "proprietor.name" }
+    },
+
+    {
+      "id": "proprietor.ssn",
+      "type": "ssn",
+      "page": 0,
+      "rect": { "x": 446.4, "y": 685, "w": 129.6, "h": 13 },
+      "layout": { "align": "center" },
+      "value": { "$ref": "proprietor.ssn" }
+    },
+
+    {
+      "id": "businessA.principal",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 36, "y": 660, "w": 408.4, "h": 14 },
+      "value": { "$ref": "business.principalActivity" }
+    },
+
+    {
+      "id": "businessC.name",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 36, "y": 636, "w": 409.6, "h": 14 },
+      "value": { "$ref": "business.name" }
+    },
+
+    {
+      "id": "line1.grossReceipts",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 475.2, "y": 516, "w": 100.8, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.grossReceipts" }
+    },
+
+    {
+      "id": "line7.grossIncome",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 475.2, "y": 444, "w": 100.8, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.grossIncome" }
+    },
+
+    {
+      "id": "line8.advertising",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 194.4, "y": 420, "w": 100, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "expenses.advertising" }
+    },
+
+    {
+      "id": "line25.utilities",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 475.2, "y": 288, "w": 100.8, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "expenses.utilities" }
+    },
+
+    {
+      "id": "line27a.otherExpensesTotal",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 475.2, "y": 252, "w": 100.8, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "expenses.otherExpensesTotal" }
+    },
+
+    {
+      "id": "line28.totalExpenses",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 475.2, "y": 228, "w": 100.8, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "expenses.totalExpenses" }
+    },
+
+    {
+      "id": "line31.netProfit",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 475.2, "y": 120, "w": 100.8, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "summary.netProfit" }
+    },
+
+    {
+      "id": "partV.otherExpenses",
+      "type": "repeat",
+      "page": 1,
+      "from": { "$ref": "otherExpenses" },
+      "maxRows": 9,
+      "rowHeight": 24,
+      "columns": [
+        {
+          "id": "description",
+          "type": "text",
+          "rect": { "x": 36, "y": 240, "w": 424.8, "h": 12 },
+          "value": { "$ref": "$row.description" }
+        },
+        {
+          "id": "amount",
+          "type": "currency",
+          "rect": { "x": 468, "y": 240, "w": 108, "h": 12 },
+          "layout": { "align": "right" },
+          "value": { "$ref": "$row.amount" }
+        }
+      ]
+    },
+
+    {
+      "id": "line48.totalOtherExpenses",
+      "type": "currency",
+      "page": 1,
+      "rect": { "x": 468, "y": 36, "w": 108, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "expenses.otherExpensesTotal" }
+    }
+  ]
+}

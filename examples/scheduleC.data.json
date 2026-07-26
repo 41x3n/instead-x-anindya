@@ -1,0 +1,29 @@
+{
+  "proprietor": {
+    "name": "Ada M Lovelace",
+    "ssn": "123456789"
+  },
+  "business": {
+    "principalActivity": "Independent software consulting",
+    "name": "Analytical Engines LLC"
+  },
+  "income": {
+    "grossReceipts": 210000,
+    "grossIncome": 210000
+  },
+  "expenses": {
+    "advertising": 3200,
+    "utilities": 2640,
+    "otherExpensesTotal": 9350,
+    "totalExpenses": 41190
+  },
+  "otherExpenses": [
+    { "description": "Cloud hosting and compute", "amount": 4200 },
+    { "description": "Professional software subscriptions", "amount": 2600 },
+    { "description": "Continuing education and conferences", "amount": 1550 },
+    { "description": "Business insurance rider", "amount": 1000 }
+  ],
+  "summary": {
+    "netProfit": 168810
+  }
+}

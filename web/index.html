@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instead — Tax Form Annotation Demo</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <div>
+          <h1>Tax Form Annotation — live demo</h1>
+          <p>
+            Edit the data on the left; the annotation prints it onto the real IRS PDF on the right.
+          </p>
+        </div>
+      </div>
+      <a
+        class="repo"
+        href="https://github.com/41x3n/instead-x-anindya"
+        target="_blank"
+        rel="noreferrer"
+        >View source ↗</a
+      >
+    </header>
+
+    <main class="layout">
+      <section class="panel controls">
+        <div class="tabs" id="tabs" role="tablist"></div>
+        <p class="hint" id="hint"></p>
+        <label class="editor-label" for="editor">Taxpayer data (JSON)</label>
+        <textarea id="editor" spellcheck="false" aria-label="Taxpayer data JSON"></textarea>
+        <div class="row">
+          <button id="render" class="btn">Render form ▸</button>
+          <span id="status" class="status"></span>
+        </div>
+        <pre id="error" class="error" hidden></pre>
+      </section>
+
+      <section class="panel preview">
+        <iframe id="frame" title="Filled form preview"></iframe>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+{
+  "$schema": "../spec/instead.annotation.schema.json",
+  "spec": "instead.annotation/v1",
+  "form": {
+    "id": "us.irs.1040",
+    "taxYear": 2025,
+    "title": "Form 1040 - U.S. Individual Income Tax Return",
+    "source": {
+      "file": "f1040.pdf",
+      "sha256": "3d31c226df0d189ced80e039d01cf0f8820c1019681a0f0ca6264de277b7e982",
+      "pages": [
+        { "index": 0, "width": 612, "height": 792 },
+        { "index": 1, "width": 612, "height": 792 }
+      ]
+    }
+  },
+  "document": { "unit": "pt", "origin": "bottom-left" },
+  "defaults": {
+    "font": "Helvetica",
+    "fontSize": 10,
+    "align": "left",
+    "vAlign": "middle",
+    "overflow": "shrink",
+    "padding": 2
+  },
+  "fields": [
+    {
+      "id": "taxpayer.firstName",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 36, "y": 684, "w": 215.2, "h": 14 },
+      "value": { "$ref": "taxpayer.firstName" }
+    },
+
+    {
+      "id": "taxpayer.lastName",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 253, "y": 684, "w": 214.2, "h": 14 },
+      "value": { "$ref": "taxpayer.lastName" }
+    },
+
+    {
+      "id": "taxpayer.ssn",
+      "type": "ssn",
+      "page": 0,
+      "value": { "$ref": "taxpayer.ssn" },
+      "split": "chars",
+      "rect": [
+        { "x": 472, "y": 684, "w": 28, "h": 14 },
+        { "x": 508, "y": 684, "w": 20, "h": 14 },
+        { "x": 533, "y": 684, "w": 42, "h": 14 }
+      ]
+    },
+
+    {
+      "id": "filingStatus.single",
+      "type": "checkbox",
+      "page": 0,
+      "rect": { "x": 97.6, "y": 578, "w": 8, "h": 8 },
+      "value": { "$ref": "taxpayer.filingStatus" },
+      "when": { "equals": "single" },
+      "format": { "mark": "X" }
+    },
+
+    {
+      "id": "address.street",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 36, "y": 636, "w": 380.9, "h": 14 },
+      "value": { "$ref": "taxpayer.address.street" }
+    },
+
+    {
+      "id": "address.city",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 36, "y": 612, "w": 294.4, "h": 14 },
+      "value": { "$ref": "taxpayer.address.city" }
+    },
+
+    {
+      "id": "address.state",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 332.2, "y": 612, "w": 63.1, "h": 14 },
+      "layout": { "align": "center" },
+      "value": { "$ref": "taxpayer.address.state" }
+    },
+
+    {
+      "id": "address.zip",
+      "type": "text",
+      "page": 0,
+      "rect": { "x": 397, "y": 612, "w": 70.2, "h": 14 },
+      "value": { "$ref": "taxpayer.address.zip" }
+    },
+
+    {
+      "id": "line1a.wages",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 504, "y": 330, "w": 72, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.wages" }
+    },
+
+    {
+      "id": "line2b.taxableInterest",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 504, "y": 210, "w": 72, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.taxableInterest" }
+    },
+
+    {
+      "id": "line3b.ordinaryDividends",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 504, "y": 198, "w": 72, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.ordinaryDividends" }
+    },
+
+    {
+      "id": "line9.totalIncome",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 504, "y": 54, "w": 72, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.totalIncome" }
+    },
+
+    {
+      "id": "line11.adjustedGrossIncome",
+      "type": "currency",
+      "page": 0,
+      "rect": { "x": 504, "y": 30, "w": 72, "h": 12 },
+      "layout": { "align": "right" },
+      "value": { "$ref": "income.adjustedGrossIncome" }
+    }
+  ]
+}

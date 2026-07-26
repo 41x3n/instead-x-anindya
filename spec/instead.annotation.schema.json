@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://instead.com/annotation.schema.json",
+  "title": "Instead Tax Form Annotation",
+  "type": "object",
+  "required": ["spec", "form", "document", "fields"],
+  "additionalProperties": true,
+  "$defs": {
+    "path": {
+      "type": "string",
+      "pattern": "^\\$?[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*|\\[[0-9]+\\])*$"
+    },
+    "ref": {
+      "type": "object",
+      "required": ["$ref"],
+      "properties": { "$ref": { "$ref": "#/$defs/path" } },
+      "additionalProperties": false
+    },
+    "rect": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "align": { "enum": ["left", "right", "center"] },
+        "vAlign": { "enum": ["top", "middle", "bottom"] },
+        "padding": { "type": "number" },
+        "font": { "type": "string" },
+        "fontSize": { "type": "number" },
+        "overflow": { "enum": ["shrink", "clip", "spill"] }
+      },
+      "additionalProperties": false
+    },
+    "field": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "enum": ["text", "date", "currency", "checkbox", "ssn", "repeat"] },
+        "page": { "type": "integer", "minimum": 0 },
+        "value": { "$ref": "#/$defs/ref" },
+        "from": { "$ref": "#/$defs/ref" },
+        "rect": {
+          "oneOf": [
+            { "$ref": "#/$defs/rect" },
+            { "type": "array", "items": { "$ref": "#/$defs/rect" } }
+          ]
+        },
+        "when": {
+          "type": "object",
+          "required": ["equals"],
+          "properties": { "equals": {} },
+          "additionalProperties": false
+        },
+        "split": { "enum": ["chars"] },
+        "maxRows": { "type": "integer", "minimum": 1 },
+        "rowHeight": { "type": "number" },
+        "columns": { "type": "array", "items": { "$ref": "#/$defs/field" } },
+        "format": { "type": "object" },
+        "layout": { "$ref": "#/$defs/layout" },
+        "default": {}
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "spec": { "const": "instead.annotation/v1" },
+    "form": {
+      "type": "object",
+      "required": ["id", "taxYear", "title", "source"],
+      "properties": {
+        "id": { "type": "string" },
+        "taxYear": { "type": "integer" },
+        "title": { "type": "string" },
+        "source": {
+          "type": "object",
+          "required": ["file", "pages"],
+          "properties": {
+            "file": { "type": "string" },
+            "sha256": { "type": "string" },
+            "pages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["index", "width", "height"],
+                "properties": {
+                  "index": { "type": "integer" },
+                  "width": { "type": "number" },
+                  "height": { "type": "number" }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "document": {
+      "type": "object",
+      "required": ["unit", "origin"],
+      "properties": { "unit": { "const": "pt" }, "origin": { "const": "bottom-left" } },
+      "additionalProperties": false
+    },
+    "defaults": { "$ref": "#/$defs/layout" },
+    "fields": { "type": "array", "items": { "$ref": "#/$defs/field" } }
+  }
+}
